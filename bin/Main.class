@@ -1,0 +1,31 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+import java.util.Scanner;
+
+public class Main {
+   public Main() {
+   }
+
+   public static void main(String[] args) throws Exception {
+      QuestionService service = new QuestionService();
+      Scanner sc = new Scanner(System.in);
+      System.out.println("You are a Teacher or a Student");
+      String role = sc.nextLine();
+      if (role.toLowerCase().equals("teacher")) {
+         System.out.println();
+         service.setQuestions();
+      } else {
+         char flag;
+         do {
+            service.setDefaultQuestions();
+            service.playQuiz();
+            service.displayScore();
+            System.out.println("Do you want to play Quiz again");
+            flag = sc.next().charAt(0);
+            System.out.println();
+         } while(flag == 'y' || flag == 'Y');
+
+         System.out.println("Thankyou for playing the quiz");
+      }
+
+   }
+}
