@@ -1,0 +1,86 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+import java.io.PrintStream;
+import java.util.Scanner;
+
+public class QuestionService {
+   Question[] ques = new Question[5];
+   String[] choice = new String[5];
+   String[] ansOption = new String[]{"A", "C", "D", "C", "B"};
+   Scanner sc;
+
+   public QuestionService() {
+      this.sc = new Scanner(System.in);
+   }
+
+   public void setDefaultQuestions() {
+      this.ques[0] = new Question(1, "Which keyword is used to inherit a class in java", "extends", "inherit", "implements", "super", "extends");
+      this.ques[1] = new Question(2, "Which loop is guaranteed to execute atleast once", "for", "while", "do-while", "switch", "do-while");
+      this.ques[2] = new Question(3, "Which keyword is used to create a object in java", "class", "static", "this", "new", "new");
+      this.ques[3] = new Question(4, "Which method compares the content of two strings in java", "==", "compare", "equals", "match", "equals");
+      this.ques[4] = new Question(5, "Which datatype stroes only true or false", "int", "boolean", "float", "char", "boolean");
+   }
+
+   public void playQuiz() {
+      for(int i = 0; i < this.ques.length; ++i) {
+         PrintStream var10000 = System.out;
+         int var10001 = this.ques[i].getId();
+         var10000.println(var10001 + " " + this.ques[i].getQues());
+         System.out.println();
+         Question var2 = this.ques[i];
+         System.out.println("A " + var2.getOpt1());
+         var2 = this.ques[i];
+         System.out.println("B " + var2.getOpt2());
+         var2 = this.ques[i];
+         System.out.println("C " + var2.getOpt3());
+         var2 = this.ques[i];
+         System.out.println("D " + var2.getOpt4());
+         System.out.print("Enter your choice  ");
+         this.choice[i] = this.sc.nextLine();
+         System.out.println();
+      }
+
+   }
+
+   public void displayScore() {
+      int score = 0;
+
+      for(int i = 0; i < this.ques.length; ++i) {
+         if (this.choice[i].equals(this.ques[i].getAns()) || this.choice[i].toUpperCase().equals(this.ansOption[i])) {
+            ++score;
+         }
+      }
+
+      System.out.println("Score of user is = " + score);
+   }
+
+   public void setQuestions() {
+      System.out.println("Set the quiz for Students ");
+      System.out.println();
+
+      for(int i = 0; i < this.ques.length; ++i) {
+         System.out.println("Enter the question");
+         String question = this.sc.nextLine();
+         this.ques[i].setId(i);
+         this.ques[i].setQues(question);
+         System.out.println("Enter option 1");
+         String opt1 = this.sc.nextLine();
+         this.ques[i].setOpt1(opt1);
+         System.out.println("Enter option 2");
+         String opt2 = this.sc.nextLine();
+         this.ques[i].setOpt2(opt2);
+         System.out.println("Enter option 3");
+         String opt3 = this.sc.nextLine();
+         this.ques[i].setOpt3(opt3);
+         System.out.println("Enter option 4");
+         String opt4 = this.sc.nextLine();
+         this.ques[i].setOpt4(opt4);
+         System.out.println("Enter Answer");
+         String answer = this.sc.nextLine();
+         this.ques[i].setAns(answer);
+         System.out.println("Enter Answer option like (A,B,C,D)");
+         String answerOption = this.sc.nextLine();
+         this.ansOption[i] = answerOption;
+      }
+
+   }
+}
